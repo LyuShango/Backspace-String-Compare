@@ -1,0 +1,45 @@
+class Solution {
+    public boolean backspaceCompare(String s, String t) {
+        int i = s.length() - 1, j = t.length() - 1;
+        while (i >= 0 || j >=0) {
+            int ic = 0, jc = 0;
+            while (i >= 0) {
+                if (s.charAt(i) == '#') {
+                    i--;
+                    ic++;
+                }
+                else if (ic > 0) {
+                    i--;
+                    ic--;
+                }
+                else {
+                    break;
+                }
+            }
+            while (j >= 0) {
+                if (t.charAt(j) == '#') {
+                    j--;
+                    jc++;
+                }
+                else if (jc > 0) {
+                    j--;
+                    jc--;
+                }
+                else {
+                    break;
+                }
+            }            
+            if ((i >= 0 && j >=0) && s.charAt(i) == t.charAt(j)) {
+                i--;
+                j--;
+            }
+            else if (i == -1 && j == -1) {
+                return true;
+            }
+            else {
+                return false;
+            }            
+        }
+        return true;
+    }
+}
